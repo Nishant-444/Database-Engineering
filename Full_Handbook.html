@@ -368,16 +368,321 @@
 		</style>
 
 		<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+
+		<!-- KaTeX for Math Rendering -->
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"
+			integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV"
+			crossorigin="anonymous"
+		/>
+		<script
+			defer
+			src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"
+			integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8"
+			crossorigin="anonymous"
+		></script>
+		<script
+			defer
+			src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+			integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05"
+			crossorigin="anonymous"
+		></script>
+
+		<style>
+			/* Custom Light Mode Styles */
+			body {
+				background-color: #ffffff;
+				color: #2c3e50;
+				transition: background-color 0.3s ease, color 0.3s ease;
+			}
+
+			/* Headings */
+			h1,
+			h2,
+			h3,
+			h4,
+			h5,
+			h6 {
+				color: #2c3e50;
+				font-weight: 600;
+			}
+
+			h1 {
+				border-bottom-color: #e0e0e0;
+				color: #1a73e8;
+			}
+
+			h2 {
+				color: #0d7377;
+			}
+
+			h3 {
+				color: #c96e00;
+			}
+
+			/* Links */
+			a {
+				color: #1a73e8;
+			}
+
+			a:hover {
+				color: #0d47a1;
+			}
+
+			a:visited {
+				color: #7b1fa2;
+			}
+
+			/* Code blocks */
+			pre {
+				background-color: #f5f5f5 !important;
+				border: 1px solid #e0e0e0 !important;
+			}
+
+			code {
+				background-color: #f0f0f0;
+				color: #d73a49;
+				padding: 2px 6px;
+				border-radius: 3px;
+			}
+
+			pre code {
+				background-color: transparent;
+				color: #2c3e50;
+			}
+
+			/* Tables */
+			table {
+				border-collapse: collapse;
+				background-color: #ffffff;
+			}
+
+			table > thead > tr > th {
+				background-color: #f8f9fa;
+				color: #0d7377;
+				border-bottom: 2px solid #e0e0e0;
+			}
+
+			table > tbody > tr > td {
+				border: 1px solid #e0e0e0;
+				color: #2c3e50;
+			}
+
+			table > tbody > tr:hover {
+				background-color: #f8f9fa;
+			}
+
+			/* Blockquotes */
+			blockquote {
+				background: rgba(26, 115, 232, 0.1);
+				border-left: 5px solid #1a73e8;
+				color: #2c3e50;
+			}
+
+			/* Horizontal rules */
+			hr {
+				border-bottom-color: #e0e0e0;
+			}
+
+			/* Lists */
+			li {
+				color: #2c3e50;
+			}
+
+			/* Strong/Bold text */
+			strong,
+			b {
+				color: #1a1a1a;
+				font-weight: 600;
+			}
+
+			/* Emphasis/Italic text */
+			em,
+			i {
+				color: #c96e00;
+			}
+
+			/* Syntax highlighting adjustments */
+			.hljs {
+				background: #f5f5f5;
+				color: #2c3e50;
+			}
+
+			.hljs-comment,
+			.hljs-quote {
+				color: #6a737d;
+			}
+
+			.hljs-variable,
+			.hljs-template-variable,
+			.hljs-tag,
+			.hljs-name,
+			.hljs-selector-id,
+			.hljs-selector-class,
+			.hljs-regexp,
+			.hljs-deletion {
+				color: #d73a49;
+			}
+
+			.hljs-number,
+			.hljs-built_in,
+			.hljs-builtin-name,
+			.hljs-literal,
+			.hljs-type,
+			.hljs-params,
+			.hljs-meta,
+			.hljs-link {
+				color: #005cc5;
+			}
+
+			.hljs-attribute {
+				color: #6f42c1;
+			}
+
+			.hljs-string,
+			.hljs-symbol,
+			.hljs-bullet,
+			.hljs-addition {
+				color: #22863a;
+			}
+
+			.hljs-title,
+			.hljs-section {
+				color: #6f42c1;
+			}
+
+			.hljs-keyword,
+			.hljs-selector-tag {
+				color: #d73a49;
+			}
+
+			/* Selection */
+			::selection {
+				background-color: #b3d4fc;
+				color: #000000;
+			}
+
+			/* Scrollbar */
+			::-webkit-scrollbar {
+				width: 14px;
+				height: 14px;
+			}
+
+			::-webkit-scrollbar-track {
+				background: #f5f5f5;
+			}
+
+			::-webkit-scrollbar-thumb {
+				background: #c0c0c0;
+				border-radius: 7px;
+			}
+
+			::-webkit-scrollbar-thumb:hover {
+				background: #a0a0a0;
+			}
+
+			/* KaTeX Math Styling */
+			.katex {
+				color: #c96e00 !important;
+				font-size: 1.1em;
+			}
+
+			.katex-display {
+				color: #c96e00 !important;
+			}
+
+			.katex .mord,
+			.katex .mrel,
+			.katex .mop,
+			.katex .mbin,
+			.katex .mopen,
+			.katex .mclose,
+			.katex .mpunct {
+				color: #c96e00 !important;
+			}
+
+			.katex .mord.text {
+				color: #22863a !important;
+			}
+		</style>
 	</head>
 	<body>
 		<script>
+			// Initialize Mermaid with light theme
 			mermaid.initialize({
 				startOnLoad: true,
-				theme:
-					document.body.classList.contains('vscode-dark') ||
-					document.body.classList.contains('vscode-high-contrast')
-						? 'dark'
-						: 'default',
+				theme: 'default',
+				themeVariables: {
+					primaryColor: '#cce5ff',
+					primaryTextColor: '#1a1a1a',
+					primaryBorderColor: '#1a73e8',
+					lineColor: '#0d7377',
+					secondaryColor: '#e8f4f8',
+					tertiaryColor: '#ffffff',
+					background: '#ffffff',
+					mainBkg: '#cce5ff',
+					secondBkg: '#e8f4f8',
+					tertiaryBkg: '#ffffff',
+					textColor: '#1a1a1a',
+					border1: '#1a73e8',
+					border2: '#0d7377',
+					arrowheadColor: '#0d7377',
+					fontFamily: 'Segoe UI, Arial, sans-serif',
+					fontSize: '16px',
+					labelTextColor: '#1a1a1a',
+					nodeTextColor: '#1a1a1a',
+					noteBkgColor: '#fff9c4',
+					noteTextColor: '#1a1a1a',
+					noteBorderColor: '#1a73e8',
+					edgeLabelBackground: '#ffffff',
+					clusterBkg: '#e8f4f8',
+					clusterBorder: '#1a73e8',
+					defaultLinkColor: '#0d7377',
+					titleColor: '#1a73e8',
+					classText: '#1a1a1a',
+					activationBkgColor: '#cce5ff',
+					activationBorderColor: '#0d7377',
+					sequenceNumberColor: '#1a1a1a',
+					sectionBkgColor: '#e8f4f8',
+					sectionBkgColor2: '#cce5ff',
+					altSectionBkgColor: '#ffffff',
+					taskBkgColor: '#cce5ff',
+					taskTextColor: '#1a1a1a',
+					taskBorderColor: '#1a73e8',
+					activeTaskBkgColor: '#a3d1ff',
+					activeTaskBorderColor: '#0d7377',
+					doneTaskBkgColor: '#c8e6c9',
+					doneTaskBorderColor: '#4caf50',
+					critBkgColor: '#ffcccc',
+					critBorderColor: '#f44336',
+					todayLineColor: '#f44336',
+					gridColor: '#e0e0e0',
+					fillType0: '#cce5ff',
+					fillType1: '#a3d1ff',
+					fillType2: '#e8f4f8',
+					fillType3: '#fff9c4',
+					fillType4: '#c8e6c9',
+					fillType5: '#ffcccc',
+					fillType6: '#d1c4e9',
+					fillType7: '#ffecb3',
+				},
+				flowchart: {
+					htmlLabels: true,
+					curve: 'basis',
+				},
+			});
+
+			// Render math expressions with KaTeX
+			document.addEventListener('DOMContentLoaded', function () {
+				renderMathInElement(document.body, {
+					delimiters: [
+						{ left: '$$', right: '$$', display: true },
+						{ left: '$', right: '$', display: false },
+					],
+					throwOnError: false,
+					trust: true,
+				});
 			});
 		</script>
 		<h1 id="the-senior-database-engineering-handbook">
