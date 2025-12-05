@@ -1,4 +1,4 @@
-# The Senior Database Engineering Handbook
+# The Database Engineering Handbook
 
 _Compiled from the Hussein Nasser Course_
 
